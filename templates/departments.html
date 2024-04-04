@@ -1,0 +1,78 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+Departments
+<br>
+<a href="#" class="btn btn-dark m-3" data-toggle="modal" data-target="#addDepartment">Add department</a>
+
+
+<div class="container">
+    {% for d in departments %}
+    <h4><a href="{% url 'core:program' dpt=d.pk %}" >{{d.department_name}}({{d.department_code}})</a> &nbsp; &nbsp;<a href="#"
+            data-toggle="modal" data-target="#editDepartment{{d.id}}"><i class="fas fa-edit text-warning"></i></a>
+        &nbsp; &nbsp;<a href="{% url 'core:deleteDepartment' pk=d.id %}"
+            onclick="return(confirm('Are you sure you want to delete this department?'))">
+            <i class="fas fa-trash text-danger"></i>
+        </a>
+        <br>
+    </h4>
+    {%endfor%}
+</div>
+
+<!-- edit department -->
+{%for d in departments %}
+<div class="modal fade" id="editDepartment{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit {{d.department_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'core:departments' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{d.id}}" name="dtId">
+                <div class="modal-body">
+                    <input type="text" placeholder="Department Code" name="dptcode" value="{{d.department_code}}"
+                        class="form-control my-2" required>
+                    <input type="text" placeholder="Department Name" name="dptname" value="{{d.department_name}}"
+                        class="form-control my-2" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
+<!-- add department -->
+<div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'core:departments' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input type="text" placeholder="Department Code" name="dptcode" class="form-control my-2" required>
+                    <input type="text" placeholder="Department Name" name="dptname" class="form-control my-2" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

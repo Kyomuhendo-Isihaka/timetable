@@ -1,0 +1,123 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+<div class="container">
+    <h3 class="text-center">{{program.program_name}}({{program.program_code}})</h3>
+    Course Units <br>
+
+    <a href="#" class="btn btn-dark m-3" data-toggle="modal" data-target="#addCourse">Add Course</a>
+    {% for year, courses_in_year in courses_by_year.items %}
+    <div class="card p-3 my-3 bg-white">
+
+        <h5>Year {{year}}</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Course Unit</th>
+                    <th>Credits</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in courses %}
+                {% if c.course_year == year %}
+                <tr>
+                    <td>{{c.course_code}}</td>
+                    <td>{{c.course_name}}</td>
+                    <td>{{c.credit}}</td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#editCourse{{c.id}}"><i
+                                class="fas fa-edit text-warning"></i></a>
+
+                        &nbsp; &nbsp;<a href="{% url 'core:deleteCourse' pk=c.id %}"
+                            onclick="return(confirm('Are you sure you want to delete this Course?'))">
+                            <i class="fas fa-trash text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+                {%endif%}
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+    {%endfor%}
+</div>
+
+{% for c in courses %}
+<!-- edit course -->
+<div class="modal fade" id="editCourse{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit {{c.course_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'core:course' program=program.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="cId" value="{{c.pk}}">
+                <div class="modal-body">
+                    <input type="text" placeholder="Course Code" name="c_code" class="form-control my-2" value="{{c.course_code}}" required>
+                    <input type="text" placeholder="Course Name" name="c_name" class="form-control my-2" value="{{c.course_name}}" required>
+                    <input type="number" placeholder="Credit units" name="c_credits" class="form-control my-2" value="{{c.credit}}" required>
+                    <select name="course_year" class="form-control my-2">
+                        <option value="1" {% if c.course_year == 1 %} selected {% endif %}>Year 1</option>
+                        <option value="2" {% if c.course_year == 2 %} selected {% endif %}>Year 2</option>
+                        <option value="3" {% if c.course_year == 3 %} selected {% endif %}>Year 3</option>
+                        <option value="4" {% if c.course_year == 4 %} selected {% endif %}>Year 4</option>
+                    </select>
+
+                    <textarea name="c_desc" id="" cols="30" rows="5" class="form-control"
+                        placeholder="Description">{{c.description}}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endfor%}
+
+<!-- add course -->
+<div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'core:course' program=program.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input type="text" placeholder="Course Code" name="c_code" class="form-control my-2" required>
+                    <input type="text" placeholder="Course Name" name="c_name" class="form-control my-2" required>
+                    <input type="number" placeholder="Credit units" name="c_credits" class="form-control my-2" required>
+                    <select name="course_year" id="" class="form-control my-2">
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                    </select>
+
+                    <textarea name="c_desc" id="" cols="30" rows="5" class="form-control"
+                        placeholder="Description"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
