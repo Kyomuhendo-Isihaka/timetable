@@ -10,6 +10,9 @@ def login_view(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+def base(request):
+    return render(request, 'base.html')
+
 
 
 
