@@ -2,16 +2,41 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from store.models import Department, Program, Course
 import datetime
-
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.models import User
 # Create your views here.
+
+def logout_view(request):
+    logout(request)
+    return redirect('core:login')
+
 def login_view(request):
-    return render(request, 'login.html')
+    login_err=""
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('core:dashboard')
+        else:
+            login_err="Invalid Username Or Password"
+
+    context = {
+            'login_err':login_err,
+        }
+                   
+    return render(request, 'core/login.html',context)
+
+
+def home(request):
+    return render(request, 'index.html')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'core/dashboard.html')
 
-def base(request):
-    return render(request, 'base.html')
+
 
 
 
@@ -121,7 +146,7 @@ def departments(request):
 
     context = {'departments': departments}
       
-    return render(request, 'departments.html', context)
+    return render(request, 'core/departments.html', context)
 
 def deleteDept(request, pk):
     department = Department.objects.get(pk=pk)
