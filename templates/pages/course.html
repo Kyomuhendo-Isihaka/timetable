@@ -2,14 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <h3 class="text-center">{{program.program_name}}({{program.program_code}})</h3>
-    Course Units <br>
-
+    <h3 class="text-center">{{ program.program_name }} ({{ program.program_code }})</h3>
+    <p>Course Units</p>
     <a href="#" class="btn btn-dark m-3" data-toggle="modal" data-target="#addCourse">Add Course</a>
+
     {% for year, courses_in_year in courses_by_year.items %}
     <div class="card p-3 my-3 bg-white">
-
-        <h5>Year {{year}}</h5>
+        <h5>Year {{ year }}</h5>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -23,27 +22,22 @@
                 {% for c in courses %}
                 {% if c.course_year == year %}
                 <tr>
-                    <td>{{c.course_code}}</td>
-                    <td>{{c.course_name}}</td>
-                    <td>{{c.credit}}</td>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ c.course_name }}</td>
+                    <td>{{ c.credit }}</td>
                     <td>
-                        <a href="#" data-toggle="modal" data-target="#editCourse{{c.id}}"><i
-                                class="fas fa-edit text-warning"></i></a>
-
-                        &nbsp; &nbsp;<a href="{% url 'core:deleteCourse' pk=c.id %}"
-                            onclick="return(confirm('Are you sure you want to delete this Course?'))">
-                            <i class="fas fa-trash text-danger"></i>
-                        </a>
+                        <a href="#" data-toggle="modal" data-target="#editCourse{{ c.id }}"><i class="fas fa-edit text-warning"></i></a>
+                        <a href="{% url 'core:deleteCourse' pk=c.id %}" onclick="return(confirm('Are you sure you want to delete this Course?'))"><i class="fas fa-trash text-danger"></i></a>
                     </td>
                 </tr>
-                {%endif%}
-                {%endfor%}
+                {% endif %}
+                {% endfor %}
             </tbody>
         </table>
-
     </div>
-    {%endfor%}
+    {% endfor %}
 </div>
+
 
 {% for c in courses %}
 <!-- edit course -->
