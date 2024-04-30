@@ -29,6 +29,13 @@ def login_view(request):
                    
     return render(request, 'core/login.html',context)
 
+def staff(request):
+    departments = Department.objects.all()
+
+    context =  {
+        'departments':departments,
+    }
+    return render(request, 'core/staff.html', context)
 
 def home(request):
     return render(request, 'index.html')
