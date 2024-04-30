@@ -13,12 +13,14 @@ urlpatterns = [
 
     path('staff/', views.staff, name='staff'),
    
+    path('staff/', views.staff, name='staff'),
+
     path('departments/', views.departments, name='departments'),
     path('departments/delete/<int:pk>', views.deleteDept, name='deleteDepartment'),
 
     path('departments/<str:dpt>/', views.program, name='program'),
     path('program/delete/<int:pk>/', views.deleteProgram, name='deleteProgram'),
-
+    
     path('courses/<str:program>/', views.course, name='course'),
     path('course/delete/<int:pk>/', views.deleteCourse, name='deleteCourse'),
 

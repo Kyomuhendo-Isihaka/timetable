@@ -32,7 +32,11 @@ def login_view(request):
 def staff(request):
     departments = Department.objects.all()
 
+<<<<<<< HEAD
     context =  {
+=======
+    context = {
+>>>>>>> afedb2f8e91da73831785d36f7f630af8fa96677
         'departments':departments,
     }
     return render(request, 'core/staff.html', context)
