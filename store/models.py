@@ -50,3 +50,41 @@ class Student(models.Model):
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Room(models.Model):
+    room_name = models.CharField(max_length=50)
+    capacity = models.PositiveIntegerField()
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.room_name
+
+class TimeSlot(models.Model):
+    DAY_CHOICES = (
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+        ('Sunday', 'Sunday'),
+    )
+
+    day = models.CharField(max_length=10, choices=DAY_CHOICES)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.day} - {self.start_time} to {self.end_time}"
+    
+class Class(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    lecturer = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    time_slot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
+    semester = models.CharField(max_length=20)
+    year = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.course} - {self.semester} {self.year}"
