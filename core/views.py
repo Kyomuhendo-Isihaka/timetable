@@ -39,6 +39,8 @@ def staff(request):
 
 def home(request):
     return render(request, 'index.html')
+def feedback(request):
+    return render(request, 'core/feedback.html')
 
 def dashboard(request):
     return render(request, 'core/dashboard.html')
