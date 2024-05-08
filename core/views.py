@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from store.models import Department, Program, Course
 import datetime
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 # Create your views here.
@@ -29,6 +30,10 @@ def login_view(request):
                    
     return render(request, 'core/login.html',context)
 
+@login_required
+def dashboard(request):
+    return render(request, 'core/dashboard.html')
+
 def staff(request):
     departments = Department.objects.all()
 
@@ -41,16 +46,6 @@ def home(request):
     return render(request, 'index.html')
 def feedback(request):
     return render(request, 'core/feedback.html')
-
-def dashboard(request):
-    return render(request, 'core/dashboard.html')
-
-
-
-
-
-
-
 
 
 def course(request, program):

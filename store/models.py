@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class Department(models.Model):
     department_name = models.CharField(max_length=100)
     department_code = models.CharField(max_length=20)
@@ -38,6 +39,19 @@ class Staff(models.Model):
     role = models.CharField(max_length=50, choices=ROLEChoices, default='Lecturer')
 
     def __str__(self):
+        return self.course_name
+
+class Staff(models.Model):
+    ROLE = [('Admin','Admin'),('Lecturer','Lecturer')]
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    username = models.CharField(max_length=255)
+    email = models.EmailField()
+    password = models.CharField(max_length=255)
+    role = models.CharField(max_length=50, choices=ROLE, default='lecturer')
+    
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"        
         return self.username
     
 
