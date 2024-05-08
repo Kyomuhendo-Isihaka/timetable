@@ -1,18 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-    
-# class Student(models.Model):
-#     reg_no = models.CharField(max_length=40)
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     email = models.EmailField()
-#     phone = models.CharField(max_length=15)
-    
-
-#     def __str__(self):
-#         return f"{self.first_name} {self.last_name}"
-
 
 
 class Department(models.Model):
@@ -51,7 +39,6 @@ class Staff(models.Model):
     role = models.CharField(max_length=50, choices=ROLEChoices, default='Lecturer')
 
     def __str__(self):
-<<<<<<< HEAD
         return self.course_name
 
 class Staff(models.Model):
@@ -65,8 +52,6 @@ class Staff(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"        
-
-=======
         return self.username
     
 
