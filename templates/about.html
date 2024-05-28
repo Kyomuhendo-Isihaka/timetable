@@ -33,6 +33,8 @@
      <link rel="stylesheet" href="{% static 'css-about/utility.css' %}">
      <!-- Main -->
      <link rel="stylesheet" href="{% static 'css-about/bundle.css' %}">
+
+     <!-- vendors -->
 </head>
 
 <body>
@@ -57,16 +59,13 @@
                     <a class="nav-link dropdown-toggle text-primary ml-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Login
                     </a>
-<<<<<<< HEAD
                     <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-primary" href="{% url 'core:login' %}">Admin</a>
                         <a class="dropdown-item text-primary" href="{% url 'staff:login' %}">Staff</a>
                         <div class="dropdown-item"></div>
-=======
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{% url 'core:login' %}">Admin</a>
                         <a class="dropdown-item" href="{% url 'staff:login' %}">Staff</a>
->>>>>>> 5be5d036ccfe4f48149d951b3fb636724f1c5d46
                         <a class="dropdown-item" href="{% url 'student:login' %}">Student</a>
                     </div>
                 </li>
@@ -79,10 +78,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
-                        <div class="about-me-info u-s-m-b-30">
-                            <h1>Welcome to 
+                        <div class="u-s-m-b-30 border border-primary rounded p-3">
+                            <h3>Welcome to 
                                 <span>Lira University's Time Table Generator!</span>
-                            </h1>
+                            </h3>
+                            <hr color="blue">
                             <p>Our Time Table Generator is your solution for efficiently managing schedules and classes at Lira University. Whether you're a student, faculty member, or administrator, our platform is designed to streamline the process of creating and organizing timetables for academic activities.
                             </p>
                            <p>1) Customization: Tailor your timetable to fit the unique needs of Lira University's diverse academic programs and schedules. With flexible options for class times, locations, and instructors, you can create timetables that work for everyone.<br>
@@ -130,120 +130,101 @@
                 </div>
             </div>
         </div>
+        <!-- <hr color="blue" width="1500"> -->
         <!-- About-Page /- -->
-            <!-- FAQ-Page -->
-        <div class="page-faq u-s-p-t-80">
+        
+        <!-- Developers-Page /- --> 
+        <section class="app-priority mt-5">
             <div class="container">
-                <div class="faq u-s-m-b-50">
-                    <h1>FREQUENTLY QUESTIONS</h1>
-                    <h1>Below are frequently asked questions, you may find the answer for yourself.</h1>
+                <div>
+                    <h3>Software Developers 
+                        <span>For Timetable Generator</span>
+                    </h3>
+                    <hr color="blue">
+                </div>    
+                <div class="priority-wrapper u-s-p-b-80">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <p class="card-title">UI/UX Designer</p>
+                                        <ul class="icon-data-list">
+                                            <li>
+                                                <div class="d-flex">
+                                                    <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                    <div>
+                                                        <p class="text-info mb-1">Isabella Becker</p>
+                                                        <p class="mb-0">Sales dashboard have been created</p>
+                                                        <small>9:30 am</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">API Designer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">Backend Developer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">Flutter Developer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="u-s-m-b-50">
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-1">Q: What is the purpose of the Time Table Generator?</a>
-                        <div class="collapse show" id="faq-1">
-                            <p>
-                                A: The Time Table Generator is a tool designed to help users efficiently create and manage schedules for various activities, such as classes, meetings, and events.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-2">Q: Who can use the Time Table Generator?</a>
-                        <div class="collapse" id="faq-2">
-                            <p>
-                                A: The Time Table Generator is suitable for students, faculty members, administrators, and anyone involved in organizing or managing schedules at Lira University.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-3">Q: Is the Time Table Generator free to use?</a>
-                        <div class="collapse" id="faq-3">
-                            <p>
-                                A: Yes, the basic features of the Time Table Generator are available for free to all users. However, there may be premium features or subscription options available for additional functionalities.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-4">Q: What customization options are available for creating timetables?</a>
-                        <div class="collapse" id="faq-4">
-                            <p>
-                                A: Users can customize various aspects of their timetables, including class timings, locations, instructors, and more. The platform offers flexibility to accommodate the unique needs of Lira University's academic programs.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-5">Q: How does the Time Table Generator ensure accuracy and avoid conflicts in schedules?</a>
-                        <div class="collapse" id="faq-5">
-                            <p>
-                                LA: The Time Table Generator employs intelligent algorithms to automatically detect and resolve scheduling conflicts. Users can also receive notifications and alerts for any potential conflicts during the scheduling process.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-6">Q: Can multiple users collaborate on creating and managing timetables?</a>
-                        <div class="collapse" id="faq-6">
-                            <p>
-                                A: Yes, the Time Table Generator supports collaborative features, allowing multiple users to work together on creating and managing timetables. Users can share access and make real-time updates to ensure coordination and alignment.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-7">Q: What support options are available for users experiencing issues with the Time Table Generator?</a>
-                        <div class="collapse" id="faq-7">
-                            <p>
-                                A: Users can access comprehensive technical support through various channels, including email, live chat, and online documentation. Our support team is dedicated to assisting users with any questions or concerns they may have.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="f-a-q u-s-m-b-30">
-                        <a data-toggle="collapse" href="#faq-8">Q: Is training available for users who are new to the Time Table Generator?</a>
-                        <div class="collapse" id="faq-8">
-                            <p>
-                                A: Yes, we offer training sessions and tutorials to help users familiarize themselves with the Time Table Generator's features and functionalities. Additionally, users can access user guides and instructional materials for self-paced learning.
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-            <!-- FAQ-Page /- -->
-    
-        <!-- Outer-Footer -->
-        <div class="outer-footer-wrapper u-s-p-y-80">
-            <h6>
-                For special offers and other discount information
-            </h6>
-            <h1>
-                Subscribe to our Newsletter
-            </h1>
-            <p>
-                Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.
-            </p>
-            <form class="newsletter-form">
-                <label class="sr-only" for="newsletter-field">Enter your Email</label>
-                <input type="text" id="newsletter-field" placeholder="Your Email Address">
-                <button type="submit" class="button">SUBMIT</button>
-            </form>
-        </div>
-        <!-- Outer-Footer /- -->
-
-    <!-- Main Content with scrolling images -->
-    <!-- <div class="main-content">
-        <div class="container">
-            
-            
-            <div>
-                <br>
-                <br>
-            </div>
-           
-            <div>
-                <br>
-                <br>
-            </div>
-
-        </div>
-    </div> -->
+        </section>
+              
 
     <!-- Footer with About Us, Contact Us, and Newsletter -->
     <footer class="footer bg-primary">
