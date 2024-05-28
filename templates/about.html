@@ -1,0 +1,327 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Time Table Generator</title>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}" />
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+     <!-- Standard Favicon -->
+     <link href="favicon.ico" rel="shortcut icon">
+     <!-- Base Google Font for Web-app -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+     <!-- Google Fonts for Banners only -->
+     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+     <!-- Font Awesome 5 -->
+     <link rel="stylesheet" href="{% static 'css-about/fontawesome.min.css' %}">
+     <!-- Ion-Icons 4 -->
+     <link rel="stylesheet" href="{% static 'css-about/ionicons.min.css' %}">
+     <!-- Animate CSS -->
+     <link rel="stylesheet" href="{% static 'css-about/animate.min.css' %}">
+     <!-- Owl-Carousel -->
+     <link rel="stylesheet" href="{% static 'css-about/owl.carousel.min.css' %}">
+     <!-- Jquery-Ui-Range-Slider -->
+     <link rel="stylesheet" href="{% static 'css-about/jquery-ui-range-slider.min.css' %}">
+     <!-- Utility -->
+     <link rel="stylesheet" href="{% static 'css-about/utility.css' %}">
+     <!-- Main -->
+     <link rel="stylesheet" href="{% static 'css-about/bundle.css' %}">
+
+     <!-- vendors -->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand brand-logo my-1" href="index.html">
+            <img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" style="max-height: 60px;" /><i
+            style="font-size: large; font-weight: bolder" class="text-primary">Time Table Generator</i>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto pr-5">
+                <li class="nav-item">
+                    <a class="nav-link text-primary ml-3" href="{% url 'core:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary ml-3" href="{% url 'core:about' %}">About</a>
+                </li>
+                <li class="nav-item dropdown pr-5">
+                    <a class="nav-link dropdown-toggle text-primary ml-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login
+                    </a>
+                    <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-primary" href="{% url 'core:login' %}">Admin</a>
+                        <a class="dropdown-item text-primary" href="{% url 'staff:login' %}">Staff</a>
+                        <div class="dropdown-item"></div>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="{% url 'core:login' %}">Admin</a>
+                        <a class="dropdown-item" href="{% url 'staff:login' %}">Staff</a>
+                        <a class="dropdown-item" href="{% url 'student:login' %}">Student</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+        <!-- About-Page -->
+        <div class="page-about u-s-p-t-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="u-s-m-b-30 border border-primary rounded p-3">
+                            <h3>Welcome to 
+                                <span>Lira University's Time Table Generator!</span>
+                            </h3>
+                            <hr color="blue">
+                            <p>Our Time Table Generator is your solution for efficiently managing schedules and classes at Lira University. Whether you're a student, faculty member, or administrator, our platform is designed to streamline the process of creating and organizing timetables for academic activities.
+                            </p>
+                           <p>1) Customization: Tailor your timetable to fit the unique needs of Lira University's diverse academic programs and schedules. With flexible options for class times, locations, and instructors, you can create timetables that work for everyone.<br>
+                            2) Efficiency: Say goodbye to manual scheduling headaches! Our intuitive interface and smart algorithms make it easy to generate accurate and conflict-free timetables in minutes, saving you time and effort.<br>
+                            3) Collaboration: Collaborate seamlessly with fellow faculty members and administrators to coordinate class schedules, room assignments, and other essential details. With real-time updates and shared access, everyone stays on the same page.<br>
+                            4) Accessibility: Access your timetable anytime, anywhere, from any device. Whether you're in the classroom, office, or on the go, you'll always have your schedule at your fingertips.<br>
+                            5) Connect on Social Media<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div id="imageContainer" class="container">
+                            <img id="scrollingImage" src="{% static 'images/timetable/b5.JPG' %}" style="height: 500px;" class="d-block w-100" alt="Image 1" />
+                        </div>
+                        <div class="about-social text-center u-s-m-b-30">
+                            <ul class="social-media-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-rss"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-pinterest"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <hr color="blue" width="1500"> -->
+        <!-- About-Page /- -->
+        
+        <!-- Developers-Page /- --> 
+        <section class="app-priority mt-5">
+            <div class="container">
+                <div>
+                    <h3>Software Developers 
+                        <span>For Timetable Generator</span>
+                    </h3>
+                    <hr color="blue">
+                </div>    
+                <div class="priority-wrapper u-s-p-b-80">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <p class="card-title">UI/UX Designer</p>
+                                        <ul class="icon-data-list">
+                                            <li>
+                                                <div class="d-flex">
+                                                    <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                    <div>
+                                                        <p class="text-info mb-1">Isabella Becker</p>
+                                                        <p class="mb-0">Sales dashboard have been created</p>
+                                                        <small>9:30 am</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">API Designer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">Backend Developer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="card-title">Flutter Developer</p>
+                                    <ul class="icon-data-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <img src="{% static 'images-dev/faces/face1.jpg' %}" alt="user">
+                                                <div>
+                                                    <p class="text-info mb-1">Isabella Becker</p>
+                                                    <p class="mb-0">Sales dashboard have been created</p>
+                                                    <small>9:30 am</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+              
+
+    <!-- Footer with About Us, Contact Us, and Newsletter -->
+    <footer class="footer bg-primary">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- About Us Section -->
+                <div class="col-md-4 text-white">
+                    <h5 class="text-white">About Us</h5>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
+                        perspiciatis unde omnis iste natus error sit voluptatem
+                        accusantium doloremque laudantium.
+                    </p>
+                </div>
+                <!-- Contact Us Section -->
+                <div class="col-md-4 text-white">
+                    <h5 class="text-white">Contact Us</h5>
+                    <p>
+                        Address: 123 Street, City, Country<br />
+                        Phone: +123456789<br />
+                        Email: info@example.com
+                    </p>
+                </div>
+                <!-- Newsletter Section -->
+
+                <div class="col-md-4 text-white">
+                    <h5 class="text-white">Feedback Section</h5>
+                    <p>Your feedback is essential for improving the system <br>Please click the link below to submit
+                        your feedback</p>
+                    <!-- Feedback Modal -->
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#feedbackModal">Feedback</a>
+                   
+                    <!-- <div class="card">
+                        <div class="card-body">
+                           
+                        </div>
+                    </div>  -->
+                </div>
+            </div>
+            <hr class="bg-white" />
+            <div class="row">
+                <div class="col-md-12 text-center text-white" id="copyright-year">
+                    <p>
+                        &copy; <span id="current-year"></span> Time Table Generator. All
+                        rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript libraries and custom scripts -->
+    <script>
+        // Get the current year
+        var currentYear = new Date().getFullYear();
+
+        // Update the span element with the current year
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
+    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- End inject -->
+    <!-- inject:js -->
+    <script src="{% static 'js/off-canvas.js' %}"></script>
+    <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'js/template.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+    <!-- End custom js for this page-->
+    <script>
+        // Array of image URLs
+        var imageUrls = [
+            "{% static 'images/timetable/b5.JPG' %}",
+            "{% static 'images/timetable/b6.JPG' %}",
+            "{% static 'images/timetable/b8.JPG' %}"
+        ];
+    
+        var currentIndex = 0;
+        var imageElement = document.getElementById("scrollingImage");
+    
+        // Function to scroll images
+        function scrollImages() {
+            currentIndex++;
+            if (currentIndex >= imageUrls.length) {
+                currentIndex = 0;
+            }
+            imageElement.src = imageUrls[currentIndex];
+        }
+    
+        // Set interval to scroll images every 2 seconds (adjust as needed)
+        setInterval(scrollImages, 3000); // Change to a lower value for faster scrolling
+    </script>
+    
+</body>
+</body>
+
+</html>
