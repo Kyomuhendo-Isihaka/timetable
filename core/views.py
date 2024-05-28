@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from store.models import Department, Program, Course
+from store.models import Department, Program, Course,Staff
 import datetime
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
@@ -42,6 +43,28 @@ def dashboard(request):
 
 def staff(request):
     departments = Department.objects.all()
+    staffs = Staff.objects.all()
+   
+    if request.method == "POST":
+        staff_id = request.POST.get('staff_id')
+        dpt = request.POST.get('department')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        conf_pass = request.POST.get('conf_password')
+
+        department = Department.objects.get(pk=dpt)
+    
+
+        if staff_id:
+            print('editing')
+        else:
+            if password==conf_pass:
+                staff = Staff.objects.create(department=department, username=username, email=email,password=password)
+                staff.save()
+            else:
+                messages.error(request, "Passwords do not match")
+                
 
     context = {
         'departments':departments,
