@@ -7,6 +7,12 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 # Create your views here.
 
+def home(request):
+    return render(request, 'index.html')
+
+def about(request):
+    return render (request, 'about.html')
+
 def logout_view(request):
     logout(request)
     return redirect('core:login')
@@ -42,8 +48,8 @@ def staff(request):
     }
     return render(request, 'core/staff.html', context)
 
-def home(request):
-    return render(request, 'index.html')
+
+
 def feedback(request):
     return render(request, 'core/feedback.html')
 

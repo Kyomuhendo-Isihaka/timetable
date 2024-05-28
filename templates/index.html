@@ -43,7 +43,10 @@
                 <div class="nav-item">
                     <ul class="primary-nav g-nav d-flex list-unstyled">
                         <li class="mr-3">
-                            <a href="#" class="text-decoration-none nav-link text-primary"> About </a>
+                            <a href="{% url 'core:home' %}" class="text-decoration-none nav-link text-primary"> Home </a>
+                        </li>
+                        <li class="mr-3">
+                            <a href="{% url 'core:about' %}" class="text-decoration-none nav-link text-primary"> About </a>
                         </li>
                         
                         <li>
