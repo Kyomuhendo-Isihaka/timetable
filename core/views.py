@@ -68,6 +68,7 @@ def staff(request):
 
     context = {
         'departments':departments,
+        'staffs':staffs,
     }
     return render(request, 'core/staff.html', context)
 
