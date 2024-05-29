@@ -1,36 +1,42 @@
 {% extends 'core/layout.html'%}
 
 {% block content %}
-Departments
-<br>
-<a href="#" class="btn btn-dark m-3" data-toggle="modal" data-target="#addDepartment">Add department</a>
 
 
-<div class="card p-3 my-3 bg-white"">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Department Name</th>
-                <th>Department Code</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for d in departments %}
-            <tr>
-                <td><a href="{% url 'core:program' dpt=d.pk %}">{{ d.department_name }}</a></td>
-                <td>{{ d.department_code }}</td>
-                <td>
-                    <a href="#" data-toggle="modal" data-target="#editDepartment{{ d.id }}"><i class="fas fa-edit text-warning"></i></a>
-                    <a href="{% url 'core:deleteDepartment' pk=d.id %}" onclick="return(confirm('Are you sure you want to delete this department?'))"><i class="fas fa-trash text-danger"></i></a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <h5 class="text-center my-3">DEPARTMENTS</h5>
 
-
+      <div class="card-body">
+        <h4 class="card-title">
+    
+        <a href="#" class="btn btn-primary my-2" data-toggle="modal" data-target="#addDepartment">Add department</a>
+    </h4>
+            <div class="table-responsive pt-2">
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th>Department Code</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    {% for d in departments %}
+                    <tr class="table-info">
+                        <td><a href="{% url 'core:program' dpt=d.pk %}">{{ d.department_name }}</a></td>
+                        <td>{{ d.department_code }}</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#editDepartment{{ d.id }}" class="btn-primary">Edit</a>
+                            <a href="{% url 'core:deleteDepartment' pk=d.id %}" onclick="return(confirm('Are you sure you want to delete this department?'))" class="btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- edit department -->
 {%for d in departments %}
 <div class="modal fade" id="editDepartment{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -53,8 +59,8 @@ Departments
                         class="form-control my-2" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
@@ -80,8 +86,8 @@ Departments
                     <input type="text" placeholder="Department Name" name="dptname" class="form-control my-2" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
