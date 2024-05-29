@@ -3,48 +3,39 @@
 {% block content %}
 <div class="container">
     <h3 class="text-center">{{ program.program_name }} ({{ program.program_code }})</h3>
-    <span><h3>Course Units</h3></span>
-    <div class="">
-        <a href="#" class="btn btn-primary m-2" data-toggle="modal" data-target="#addCourse">Add Course Units</a>
+    <p>Course Units</p>
+    <a href="#" class="btn btn-primary m-3" data-toggle="modal" data-target="#addCourse">Add Course</a>
 
     </div>
     {% for year, courses_in_year in courses_by_year.items %}
-    <div class="card p-0  bg-white my-3">
-        
-        <div class="card-body pt-3  ">
-            <h5>Year {{ year }}</h5>
-            <div class="table-responsive pt-0">
-                
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Course Unit</th>
-                            <th>Credits</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for c in courses %}
-                        {% if c.course_year == year %}
-                        <tr class="table-info {% if c.credit >= 4 %}table-primary{% elif c.credit >= 3 %}table-primary{% elif c.credit >= 2 %}table-warning{% else %}table-danger{% endif %}">
-                            <td>{{ c.course_code }}</td>
-                            <td>{{ c.course_name }}</td>
-                            <td>{{ c.credit }}</td>
-                            <td>
-                                <a href="#" data-toggle="modal" data-target="#editCourse{{ c.id }}" class="btn-primary">Edit</a>
-                                <a href="{% url 'core:deleteCourse' pk=c.id %}" onclick="return(confirm('Are you sure you want to delete this Course?'))" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        </div>
-        
-    
+    <div class="card p-3 my-3 bg-white">
+        <h5>Year {{ year }}</h5>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Course Unit</th>
+                    <th>Credits</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in courses %}
+                {% if c.course_year == year %}
+                <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ c.course_name }}</td>
+                    <td>{{ c.credit }}</td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#editCourse{{ c.id }}"><i class="fas fa-edit text-warning"></i></a>
+                        <a href="{% url 'core:deleteCourse' pk=c.id %}" onclick="return(confirm('Are you sure you want to delete this Course?'))"><i class="fas fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endfor %}
 </div>
 
