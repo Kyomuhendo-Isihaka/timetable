@@ -26,22 +26,28 @@
 
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+
+  <script>
+    function showPopup(message) {
+      alert(message);
+    }
+  </script>
+
 </head>
 
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo ml-5 " href="#"><img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" />TTG</a>
-        <a class="navbar-brand brand-logo-mini" href="#"><img src="{% static 'images/timetable/logolira.png' %}"
-            alt="logo" /></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="icon-menu"></span>
-        </button>
-      
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top">
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between w-100">
+          <div class="navbar-brand-wrapper">
+            <a class="navbar-brand brand-logo ml-3 d-flex align-items-center my-2" href="#">
+              <img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" />
+              <!-- <p class="text-primary text-bolder" style="font-weight: bolder;font-size: x-large;">Time Table Generator</p> -->
+              <img src="{% static 'images/timetable/tt.png' %}" alt="logo" />
+          </a>
+          </div>
+          
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
@@ -93,9 +99,9 @@
               </a>
             </div>
           </li>
-         
+
         </ul>
-        
+
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
           data-toggle="offcanvas">
           <span class="icon-menu"></span>
@@ -134,6 +140,21 @@
             <a class="nav-link" href="{% url 'core:student' %}">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Students</span>
+
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Rooms</span>
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Timetable</span>
 
             </a>
           </li>
@@ -187,6 +208,30 @@
   <script src="{% static 'js/dashboard.js' %}"></script>
   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
   <!-- End custom js for this page-->
+
+  {% if messages %}
+  <script>
+    function showPopup(message) {
+      var popup = document.getElementById('popup');
+      popup.innerText = message;
+      popup.classList.add('show');
+      setTimeout(function () {
+        popup.classList.remove('show');
+      }, 3000);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var messagesContainer = document.getElementById('messages-container');
+      var messages = messagesContainer.dataset.messages;
+      if (messages) {
+        messages = JSON.parse(messages);
+        messages.forEach(function (message) {
+          showPopup(message);
+        });
+      }
+    });
+  </script>
+  {% endif %}
 </body>
 
 </html>
