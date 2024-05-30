@@ -20,7 +20,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- endinject -->
@@ -30,22 +30,32 @@
 <body>
 
   <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo ml-5 " href="#"><img
-                    src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" />Time Table Generator</a>
-            <a class="navbar-brand brand-logo-mini" href="#"><img src="{% static 'images/timetable/logolira.png' %}"
-                    alt="logo" /></a>
-        </div>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top">
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between w-100">
+          <div class="navbar-brand-wrapper">
+              <a class="navbar-brand brand-logo ml-3 d-flex align-items-center my-2" href="#">
+                  <img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" />
+                  <p class="text-primary text-bolder" style="font-weight: bolder;font-size: x-large;">Time Table Generator</p>
+              </a>
+              <a class="navbar-brand brand-logo-mini" href="#">
+                  <img src="{% static 'images/timetable/logolira.png' %}" alt="logo" />
+              </a>
+          </div>
+       
+        
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
     </nav>
-
     <div class="container-fluid full-page-wrapper" style="margin-top: 60px;">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo text-center">
-                <img src="{% static 'images/timetable/logolira.png' %}" height="70" width="30" alt="logo">
+                <img src="{% static 'images/timetable/logolira.png' %}" width="50" height="120" alt="logo">
               </div>
               <h4>Hello! Welcome Back</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
