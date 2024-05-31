@@ -27,8 +27,8 @@
                             <td>{{s.department.department_name}}</td>
                             <td>{{s.role}}</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#editStudent{{ d.id }}"><button class="btn btn-warning">Edit</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="" onclick="return(confirm('Are you sure you want to delete this student?'))"><button class="btn btn-danger">Delete</button></i></a>
+                                <a href="#" data-toggle="modal" data-target="#editStaff{{ s.id }}"><button class="btn btn-warning">Edit</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{% url 'core:deleteStaff' staff_id=s.pk %}" onclick="return(confirm('Are you sure you want to delete this staff?'))"><button class="btn btn-danger">Delete</button></i></a>
                             </td>
                         </tr>
                         {%endfor%}
@@ -96,4 +96,80 @@
         </div>
     </div>
 </div>
+
+<!-- edit staff -->
+{% for s in staffs %}
+<div class="modal fade" id="editStaff{{s.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Edit Staff</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="staff_id" value="{{s.pk}}">
+
+                        <div class="form-group">
+                            <label for="">Department</label>
+                            <select name="department" required class="js-example-basic-single w-100 form-control">
+                                
+                                {% for d in departments %}
+                                <option value="{{d.pk}}" {% if d.department_name == s.department.department_name %} selected {% endif %}>{{d.department_name}}</option>
+                                
+                                {%endfor%}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Username</label>
+                            <input name="username" value="{{s.username}}" required type="text" class="form-control" id="exampleInputUsername1"
+                                placeholder="Username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Role(<i>Admin/Lecturer</i>)</label>
+                            <input name="role" value="{{s.role}}" required type="text" class="form-control" id="exampleInputUsername1"
+                                placeholder="Role" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" required value="{{s.email}}" class="form-control" id="exampleInputEmail1"
+                                placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input  value="{{s.password}}" required type="password" class="form-control"
+                                id="exampleInputPassword1" placeholder="Password" />
+                        </div>
+
+                        <p><i>Input current user password if you don't wish to change</i></p>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">New Password</label>
+                            <input name="password"  required type="password" class="form-control"
+                                id="exampleInputPassword1" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirm New Password</label>
+                            <input name="conf_password" required type="password" class="form-control"
+                                id="exampleInputPassword1" placeholder="Password" />
+                        </div>
+                         
+
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button type="reset" data-dismiss="modal" class="btn btn-secondary">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
 {%endblock%}

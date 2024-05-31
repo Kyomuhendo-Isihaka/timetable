@@ -11,12 +11,15 @@ urlpatterns = [
     path('login/', views.login_view, name = 'login'),
     path('logout/', views.logout_view, name = 'logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
+
     path('student/', views.students, name='student'),
+    path('student/delete/<int:pk>', views.deleteStudent, name='deleteStudent'),
+
     path('room/', views.rooms, name='room'),
 
+       
     path('staff/', views.staff, name='staff'),
-   
-    path('staff/', views.staff, name='staff'),
+    path('staff/delete/<int:staff_id>', views.delete_staff, name = 'deleteStaff'),
 
     path('departments/', views.departments, name='departments'),
     path('departments/delete/<int:pk>', views.deleteDept, name='deleteDepartment'),
