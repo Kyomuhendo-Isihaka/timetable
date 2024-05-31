@@ -112,7 +112,8 @@
     <div class="container-fluid page-body-wrapper">
 
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas position-fixed" id="sidebar">
+      <!-- <nav class="sidebar sidebar-offcanvas position-fixed" id="sidebar"> -->
+      <nav class="sidebar sidebar-offcanvas position-fixed" id="sidebar">  
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'core:dashboard'%}">
@@ -145,8 +146,8 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="icon-head menu-icon"></i>
+            <a class="nav-link" href="{% url 'core:room' %}">
+              <i class="fa-solid fa-restroom"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="menu-title">Rooms</span>
 
             </a>
