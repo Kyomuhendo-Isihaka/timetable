@@ -185,6 +185,9 @@ def departments(request):
 def students(request):
     return render(request, 'core/student.html')
 
+def rooms(request):
+    return render(request, 'core/room.html')
+
 def deleteDept(request, pk):
     department = Department.objects.get(pk=pk)
     department.delete()
