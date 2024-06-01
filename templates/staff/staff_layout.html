@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
@@ -29,6 +31,9 @@
 
 <body>
   <div class="container-scroller">
+    <!-- notification div -->
+    <div id="notification" class="notification">Action was successful!</div>
+
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -104,6 +109,8 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
+      <div id="notification" class="notification">Action was successful!</div>
+
 
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas position-fixed" id="sidebar">
@@ -124,16 +131,29 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Lecturers</span>
+              <i class="fa-solid fa-home"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Rooms</span>
 
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'student:dashboard'%}">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Students</span>
+              <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Time Table</span>
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'student:dashboard' %}">
+              <i class="fa-solid fa-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Academic Calender</span>
+
+            </a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'student:dashboard' %}">
+              <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Important Dates</span>
 
             </a>
           </li>
@@ -142,7 +162,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'staff:logout' %}">
               <i class="icon-lock menu-icon"></i>
-              <span class="menu-title">Logout</span>
+              <span class="menu-title" onclick="performAction()">Logout</span>
 
             </a>
           </li>
@@ -163,6 +183,7 @@
 
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'js/notification.js' %}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
