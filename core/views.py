@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from store.models import Department, Program, Course,Staff, Student
+from store.models import Department, Program, Course,Staff, Student, Room
 import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -44,13 +44,15 @@ def dashboard(request):
     num_course = Course.objects.all().count()
     num_staff = Staff.objects.all().count()
     num_student = Student.objects.all().count()
+    num_room = Room.objects.all().count()
 
     context = {
         'num_dpt':num_dpt,
         'num_prog':num_prog,
         'num_course':num_course,
         'num_staff':num_staff,
-        'num_student':num_student
+        'num_student':num_student,
+        'num_room':num_room
     }
     return render(request, 'core/dashboard.html', context)
 
@@ -258,12 +260,35 @@ def departments(request):
       
     return render(request, 'core/departments.html', context)
 
-
-
-def rooms(request):
-    return render(request, 'core/room.html')
-
 def deleteDept(request, pk):
     department = Department.objects.get(pk=pk)
     department.delete()
     return redirect('core:departments')
+
+def rooms(request):
+    rooms = Room.objects.all()
+    if request.method == "POST":
+        room_id = request.POST.get('room_id')
+        room_name = request.POST.get('room_name')
+        room_cap = request.POST.get('room_cap')
+        room_location = request.POST.get('room_location')
+
+        if room_id:
+            room = Room.objects.get(pk = room_id)
+            room.room_name = room_name
+            room.capacity = room_cap
+            room.location = room_location
+
+            room.save()
+        else:
+            room = Room.objects.create(room_name=room_name, capacity = room_cap, location = room_location)
+            room.save()
+    context = {
+        'rooms':rooms,
+    }
+    return render(request, 'core/room.html', context)
+
+def deleteRoom(request, pk):
+    room = Room.objects.get(pk = pk)
+    room.delete()
+    return redirect('core:room')
