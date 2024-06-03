@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class Department(models.Model):
@@ -72,9 +73,52 @@ class TimeSlot(models.Model):
         ('Sunday', 'Sunday'),
     )
 
+    TIME_RANGE_CHOICES = (
+        ('08:00-11:00', '08:00-11:00'),
+        ('11:00-14:00', '11:00-14:00'),
+        ('14:00-17:00', '14:00-17:00'),
+    )
+
     day = models.CharField(max_length=10, choices=DAY_CHOICES)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    time_range = models.CharField(max_length=11, choices=TIME_RANGE_CHOICES)
 
     def __str__(self):
-        return f"{self.day} - {self.start_time} to {self.end_time}"
+        return f"{self.day} - {self.time_range}"
+    
+class Timetable(models.Model):
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    year = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Timetable for {self.program.program_name} Year {self.year}"
+    
+class CourseSchedule(models.Model):
+    timetable = models.ForeignKey(Timetable, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    timeslot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.course.course_name} in {self.room.room_name} at {self.timeslot}"
+
+    def save(self, *args, **kwargs):
+        self.validate_schedule()
+        super().save(*args, **kwargs)
+
+    def validate_schedule(self):
+        # Check for room conflicts
+        room_conflicts = CourseSchedule.objects.filter(
+            room=self.room,
+            timeslot=self.timeslot
+        ).exclude(id=self.id)
+        if room_conflicts.exists():
+            raise ValidationError(f"Room {self.room.room_name} is already booked for {self.timeslot}.")
+
+        # Check for staff conflicts
+        staff_conflicts = CourseSchedule.objects.filter(
+            staff=self.staff,
+            timeslot=self.timeslot
+        ).exclude(id=self.id)
+        if staff_conflicts.exists():
+            raise ValidationError(f"Staff {self.staff.username} is already scheduled for another course at {self.timeslot}.")

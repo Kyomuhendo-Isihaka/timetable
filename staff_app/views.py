@@ -14,6 +14,7 @@ def login_view(request):
             if staff.password == password:
                
                 request.session['staff_id'] = staff.id
+                staff_id = staff.id 
                 
                 return redirect('staff:dashboard')  
             else:
