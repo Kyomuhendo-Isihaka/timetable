@@ -1,8 +1,5 @@
-{% extends 'core/layout.html'%}
-
-{% block content %}
-Rooms
-<br>
+{% extends 'core/layout.html'%} {% block content %} Rooms
+<br />
 
 <!-- add room -->
 <a href="#" class="btn btn-primary m-3" data-toggle="modal" data-target="#addRoom">Add Room</a>
@@ -115,8 +112,8 @@ Rooms
                   EDUC
                 </td>
                 <td>
-                    <a href="#" data-toggle="modal" data-target="#editRoom{{ d.id }}"><i class="fas fa-edit text-warning"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="" onclick="return(confirm('Are you sure you want to delete this room?'))"><i class="fas fa-trash text-danger"></i></a>
+                    <a href="#" data-toggle="modal" data-target="#editRoom{{ d.id }}" class="btn btn-warning">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" onclick="return(confirm('Are you sure you want to delete this room?'))" class="btn btn-danger">Delete</a>
                 </td>
               </tr>
             </tbody>
@@ -127,103 +124,95 @@ Rooms
 </div>
 
 
-<!-- edit room -->
-<div class="modal fade" id="editRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Edit Room</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <form class="forms-sample" method="POST">
-                        {% csrf_token %}
-
-                        <div class="form-group">
-                            <label for="">Room</label>
-                            <select name="department" required class="js-example-basic-single w-100 form-control">
-                                <option value="">Choose Room</option>
-                                {% for d in rooms %}
-                                <option value="{{d.pk}}">{{d.room_name}}</option>
-                                {%endfor%}
-                                
-                              </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Room Number</label>
-                            <input name="username" required type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Room Name</label>
-                            <input type="email" name="email" required class="form-control" id="exampleInputEmail1" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Room Location</label>
-                            <input type="text" name="location" required class="form-control" id="location" placeholder="Location">
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">Edit Room</button>
-                        <button type="reset" data-dismiss="modal" class="btn btn-light">Cancel</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 <!-- Add room -->
-<div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+<div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Add Room</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Add Room</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+      <div class="card">
+        <div class="card-body">
+          <form class="forms-sample" method="POST">
+            {% csrf_token %}
+
+           
+            <div class="form-group">
+              <label for="exampleInputUsername1">Room Name</label>
+              <input name="room_name" required type="text" class="form-control" id="exampleInputUsername1"
+                placeholder="Room name" />
             </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <form class="forms-sample" method="POST">
-                        {% csrf_token %}
-
-                        <div class="form-group">
-                            <label for="">Room</label>
-                            <select name="department" required class="js-example-basic-single w-100 form-control">
-                                <option value="">Choose Room</option>
-                                {% for d in rooms %}
-                                <option value="{{d.pk}}">{{d.room_name}}</option>
-                                {%endfor%}
-                                
-                              </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Room Number</label>
-                            <input name="username" required type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Room Name</label>
-                            <input type="email" name="email" required class="form-control" id="exampleInputEmail1" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Room Location</label>
-                            <input type="text" name="location" required class="form-control" id="location" placeholder="Location">
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">Add Room</button>
-                        <button type="reset" data-dismiss="modal" class="btn btn-light">Cancel</button>
-                    </form>
-                </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Room Capacity</label>
+              <input type="text" name="room_cap" required class="form-control" id="exampleInputEmail1"
+                placeholder="Room Capacity" />
             </div>
-
+            <div class="form-group">
+              <label for="location">Room Location</label>
+              <input type="text" name="room_location" required class="form-control" id="location" placeholder="Location" />
+            </div>
+            <button type="submit" class="btn btn-primary mr-2" onclick="performAction()">
+              Add Room
+            </button>
+            <button type="reset" data-dismiss="modal" class="btn btn-light">
+              Cancel
+            </button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+{% for r in rooms %}
+<!-- edit room -->
+<div class="modal fade" id="editRoom{{r.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Edit Room</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <form class="forms-sample" method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="room_id" value="{{r.id}}" id="">
+            <div class="form-group">
+              <label for="exampleInputUsername1">Room Name</label>
+              <input name="room_name" value="{{r.room_name}}" required type="text" class="form-control" id="exampleInputUsername1"
+                placeholder="Room Name" />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Room Capacity</label>
+              <input type="text" value="{{r.capacity}}" name="room_cap" required class="form-control" id="exampleInputEmail1"
+                placeholder="Room Capacity" />
+            </div>
+            <div class="form-group">
+              <label for="location">Room Location</label>
+              <input type="text" value="{{r.location}}" name="room_location" required class="form-control" id="location" placeholder="Location" />
+            </div>
+            <button type="submit" class="btn btn-primary mr-2" onclick="performAction()">
+              Edit Room
+            </button>
+            <button type="reset" data-dismiss="modal" class="btn btn-light">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%}
 {%endblock%}

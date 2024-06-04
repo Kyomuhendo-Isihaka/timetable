@@ -223,13 +223,7 @@
     </footer>
 
     <!-- JavaScript libraries and custom scripts -->
-    <script>
-        // Get the current year
-        var currentYear = new Date().getFullYear();
-
-        // Update the span element with the current year
-        document.getElementById("current-year").textContent = currentYear;
-    </script>
+    
     <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
     <!-- End inject -->
     <!-- inject:js -->
@@ -238,6 +232,7 @@
     <script src="{% static 'js/template.js' %}"></script>
     <script src="{% static 'js/settings.js' %}"></script>
     <script src="{% static 'js/todolist.js' %}"></script>
+    <script src="{% static 'js/currentyear.js' %}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{% static 'js/dashboard.js' %}"></script>

@@ -23,9 +23,11 @@
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+ 
 
   <script>
     function showPopup(message) {
@@ -52,8 +54,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
               data-toggle="dropdown">
-              <i class="icon-bell mx-0"></i>
-              <span class="count"></span>
+              <i class="ti-settings mx-0"></i>
+              <!-- <span class="count"></span> -->
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
               aria-labelledby="notificationDropdown">
@@ -164,7 +166,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'core:logout' %}">
               <i class="icon-lock menu-icon"></i>
-              <span class="menu-title">Logout</span>
+              <span class="menu-title" onclick="performAction()">Logout</span>
 
             </a>
           </li>
@@ -182,6 +184,8 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <div id="notification" class="notification">Successful!</div>
+
   <!-- container-scroller -->
 
   <!-- plugins:js -->
@@ -204,6 +208,8 @@
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/notification.js' %}"></script>
+  <script src="{% static 'js/currentdate.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -233,6 +239,7 @@
     });
   </script>
   {% endif %}
+  
 </body>
 
 </html>

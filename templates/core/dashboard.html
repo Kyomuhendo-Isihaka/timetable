@@ -6,62 +6,56 @@
         <div class="col-md-12 grid-margin">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Welcome Kusemererwa Edson</h3>
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly!</h6>
+                    <h3 class="font-weight-bold">Welcome Back!</h3>
+                    <h6 class="font-weight-normal mb-0">Thank you for using our timetable generator system!</h6>
                 </div>
                 <div class="col-12 col-xl-4">
-                    <div class="justify-content-end d-flex">
-                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                            <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                <a class="dropdown-item" href="#">January - March</a>
-                                <a class="dropdown-item" href="#">March - June</a>
-                                <a class="dropdown-item" href="#">June - August</a>
-                                <a class="dropdown-item" href="#">August - November</a>
-                            </div>
-                        </div>
+                    <div class="card" style="max-width: 150px; border-radius: 8px;">
+                        <div class="card-body"><h3 class="text-center text-bolder">Today</h3>
+                            <div class="text-center text-bolder" id="current-date"></div>
+                    </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6 grid-margin transparent">
             <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-tale">
+                    <div class="card card-dark-blue">
                         <div class="card-body">
-                            <p class="mb-4">Total Faculties</p>
-                            <p class="fs-30 mb-2">6</p>
-                           <!--  <p>10.00% (30 days)</p> -->
+                            <p class="mb-4">Total Departments</p>
+                            <p class="fs-30 mb-2">{{num_dpt}}</p>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-dark-blue">
-                        <div class="card-body">
-                            <p class="mb-4">Total Departments</p>
-                            <p class="fs-30 mb-2">40</p>
+                    <div class="card bg-danger">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Total Programs</p>
+                            <p class="fs-30 mb-2">{{num_prog}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                    <div class="card card-light-blue">
-                        <div class="card-body">
-                            <p class="mb-4">Total Lecturers</p>
-                            <p class="fs-30 mb-2">60</p>
+                    <div class="card card-primary bg-success">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Total Staff</p>
+                            <p class="fs-30 mb-2">{{num_staff}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
-                    <div class="card card-light-danger">
-                        <div class="card-body">
+                    <div class="card bg-warning">
+                        <div class="card-body text-white">
                             <p class="mb-4">Total Rooms</p>
-                            <p class="fs-30 mb-2">100</p>
+                            <p class="fs-30 mb-2">{{num_room}}</p>
                         </div>
                     </div>
                 </div>
@@ -70,39 +64,24 @@
         <div class="col-md-6 grid-margin transparent">
             <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-tale">
-                        <div class="card-body">
+                    <div class="card bg-dark">
+                        <div class="card-body text-white">
                             <p class="mb-4">Total Courses</p>
-                            <p class="fs-30 mb-2">200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-dark-blue">
-                        <div class="card-body">
-                            <p class="mb-4">Total Board Rooms</p>
-                            <p class="fs-30 mb-2">12</p>
+                            <p class="fs-30 mb-2">{{num_course}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                    <div class="card card-light-blue">
+                    <div class="card card-dark-blue">
                         <div class="card-body">
-                            <p class="mb-4">Full Time Lecturers</p>
-                            <p class="fs-30 mb-2">40</p>
+                            <p class="mb-4">Total Students</p>
+                            <p class="fs-30 mb-2">{{num_student}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 stretch-card transparent">
-                    <div class="card card-light-danger">
-                        <div class="card-body">
-                            <p class="mb-4">Part time Lectures</p>
-                            <p class="fs-30 mb-2">20</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

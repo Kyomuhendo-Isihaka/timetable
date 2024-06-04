@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from store.models import Department, Program, Course,Staff
+from store.models import Department, Program, Course,Staff, Student, Room
 import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -39,14 +39,77 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'core/dashboard.html')
+    num_dpt = Department.objects.all().count()
+    num_prog = Program.objects.all().count()
+    num_course = Course.objects.all().count()
+    num_staff = Staff.objects.all().count()
+    num_student = Student.objects.all().count()
+    num_room = Room.objects.all().count()
+
+    context = {
+        'num_dpt':num_dpt,
+        'num_prog':num_prog,
+        'num_course':num_course,
+        'num_staff':num_staff,
+        'num_student':num_student,
+        'num_room':num_room
+    }
+    return render(request, 'core/dashboard.html', context)
+
+def students(request):
+    programs = Program.objects.all()
+    students = Student.objects.all().order_by('-id')
+
+    if request.method == "POST":
+        student_id = request.POST.get('student_id')
+        program = request.POST.get('program')
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        reg_no = request.POST.get('reg_no')
+        password = request.POST.get('password')
+        conf_pass = request.POST.get('conf_password')
+
+        
+        prog = Program.objects.get(pk=program)
+
+        if student_id:
+            if password==conf_pass:
+                student = Student.objects.get(pk=student_id)
+                student.first_name = fname
+                student.last_name = lname
+                student.email = email
+                student.program = prog
+                student.reg_no=reg_no
+                student.save()
+
+            else:
+                messages.error(request, "Passwords do not match") 
+        else:
+            if password==conf_pass:
+                student = Student.objects.create(reg_no=reg_no, first_name=fname, last_name=lname,email=email, program=prog, password=password)
+                student.save()
+            else :        
+                messages.error(request, "Passwords do not match")      
+
+    context = {
+        'programs':programs,
+        'students':students,
+    }
+    return render(request, 'core/student.html', context)
+
+def deleteStudent(request, pk):
+    student = Student.objects.get(pk=pk)
+    student.delete()
+    return redirect('core:student')
 
 def staff(request):
     departments = Department.objects.all()
-    staffs = Staff.objects.all()
+    staffs = Staff.objects.all().order_by('-id')
    
     if request.method == "POST":
         staff_id = request.POST.get('staff_id')
+        role = request.POST.get('role')
         dpt = request.POST.get('department')
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -57,7 +120,18 @@ def staff(request):
     
 
         if staff_id:
-            print('editing')
+            if password==conf_pass:
+                staff = Staff.objects.get(pk=staff_id)
+                
+                staff.username = username
+                staff.email = email
+                staff.role = role
+                staff.password=password
+                staff.department = department
+                staff.save()
+
+            else:
+                messages.error(request, "Passwords do not match")
         else:
             if password==conf_pass:
                 staff = Staff.objects.create(department=department, username=username, email=email,password=password)
@@ -72,6 +146,10 @@ def staff(request):
     }
     return render(request, 'core/staff.html', context)
 
+def delete_staff (request, staff_id):
+    staff = Staff.objects.get(pk=staff_id)
+    staff.delete()
+    return redirect('core:staff')
 
 
 def feedback(request):
@@ -182,13 +260,35 @@ def departments(request):
       
     return render(request, 'core/departments.html', context)
 
-def students(request):
-    return render(request, 'core/student.html')
-
-def rooms(request):
-    return render(request, 'core/room.html')
-
 def deleteDept(request, pk):
     department = Department.objects.get(pk=pk)
     department.delete()
     return redirect('core:departments')
+
+def rooms(request):
+    rooms = Room.objects.all()
+    if request.method == "POST":
+        room_id = request.POST.get('room_id')
+        room_name = request.POST.get('room_name')
+        room_cap = request.POST.get('room_cap')
+        room_location = request.POST.get('room_location')
+
+        if room_id:
+            room = Room.objects.get(pk = room_id)
+            room.room_name = room_name
+            room.capacity = room_cap
+            room.location = room_location
+
+            room.save()
+        else:
+            room = Room.objects.create(room_name=room_name, capacity = room_cap, location = room_location)
+            room.save()
+    context = {
+        'rooms':rooms,
+    }
+    return render(request, 'core/room.html', context)
+
+def deleteRoom(request, pk):
+    room = Room.objects.get(pk = pk)
+    room.delete()
+    return redirect('core:room')
