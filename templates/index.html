@@ -23,46 +23,36 @@
 
 <body>
     <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top">
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between w-100">
-          <div class="navbar-brand-wrapper">
-              <a class="navbar-brand brand-logo ml-3 d-flex align-items-center my-2" href="#">
-                  <img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" />
-                  <p class="text-primary text-bolder" style="font-weight: bolder;font-size: x-large;">Time Table Generator</p>
-              </a>
-              <a class="navbar-brand brand-logo-mini" href="#">
-                  <img src="{% static 'images/timetable/logolira.png' %}" alt="logo" />
-              </a>
-          </div>
-       
-            <div class="nav-item">
-                <ul class="primary-nav g-nav d-flex list-unstyled">
-                    <li class="mr-3">
-                        <a href="{% url 'core:home' %}" class="text-decoration-none nav-link text-primary"> Home </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <a class="navbar-brand brand-logo my-1" href="index.html">
+                <img src="{% static 'images/timetable/logolira.png' %}" class="mr-2" alt="Lira University" style="max-height: 60px;" /><i
+                style="font-size: large; font-weight: bolder" class="text-primary">Time Table Generator</i>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto pr-5">
+                    <li class="nav-item">
+                        <a class="nav-link text-primary ml-3" href="{% url 'core:home' %}">Home</a>
                     </li>
-                    <li class="mr-3">
-                        <a href="{% url 'core:about' %}" class="text-decoration-none nav-link text-primary"> About </a>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary ml-3" href="{% url 'core:about' %}">About</a>
                     </li>
-                    
-                    <li>
-                        <a class="nav-link dropdown-toggle text-primary" href="#" id="profileDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropdown pr-5">
+                        <a class="nav-link dropdown-toggle text-primary ml-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="{% url 'core:login' %}">Admin</a>
-                            <a class="dropdown-item" href="{% url 'staff:login' %}">Staff</a>
-                            <a class="dropdown-item" href="{% url 'student:login' %}">Student</a>
+                        <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item text-primary" href="{% url 'core:login' %}">Admin</a>
+                            <a class="dropdown-item text-primary" href="{% url 'staff:login' %}">Staff</a>
+                            <a class="dropdown-item text-primary" href="{% url 'student:login' %}">Student</a>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-                <span class="icon-menu"></span>
-            </button>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Main Content with scrolling images -->
     <div class="main-content" style="margin-top: 75px;">
@@ -188,7 +178,7 @@
             <div class="row">
                 <!-- About Us Section -->
                 <div class="col-md-4 text-white">
-                    <h5>About Us</h5>
+                    <h5 class="text-white text-center"> Newsletter</h5>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
                         perspiciatis unde omnis iste natus error sit voluptatem
@@ -197,19 +187,16 @@
                 </div>
                 <!-- Contact Us Section -->
                 <div class="col-md-4 text-white">
-                    <h5>Contact Us</h5>
+                    <h5 class="text-white text-center">FAQ</h5>
                     <p>
-                        Address: 123 Street, City, Country<br />
-                        Phone: +123456789<br />
-                        Email: info@example.com
+                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit non cum ipsa totam natus libero, voluptates temporibus odit, aliquam recusandae corrupti blanditiis quibusdam nobis nam praesentium dolorum doloribus consequatur culpa.
                     </p>
                 </div>
                 <!-- Newsletter Section -->
 
                 <div class="col-md-4 text-white">
-                    <h5>Feedback Section</h5>
-                    <p>Your feedback is essential for improving the system <br>Please click the link below to submit
-                        your feedback</p>
+                    <h5 class="text-white text-center" >Follow us</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, eveniet maxime sequi a quo harum eius itaque esse, velit, ea consequuntur earum incidunt ipsum! Nam, ipsa unde. Repellat, laborum iure.</p>
                     <!-- Feedback Modal -->
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#feedbackModal">Feedback</a>
                    

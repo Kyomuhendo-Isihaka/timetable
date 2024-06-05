@@ -292,3 +292,9 @@ def deleteRoom(request, pk):
     room = Room.objects.get(pk = pk)
     room.delete()
     return redirect('core:room')
+
+def timetable(request):
+    return render(request, 'core/timetable.html')
+
+def scheduletimetable(request):
+    return render(request, 'pages/scheduletimetable.html')
