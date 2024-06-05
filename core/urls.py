@@ -30,6 +30,8 @@ urlpatterns = [
     
     path('courses/<str:program>/', views.course, name='course'),
     path('course/delete/<int:pk>/', views.deleteCourse, name='deleteCourse'),
+    path('timetable/', views.timetable, name='timetable'),
+    path('scheduletimetable/', views.scheduletimetable, name='scheduletimetable'),
 
 
     
