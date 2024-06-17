@@ -121,29 +121,24 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          {% if staff.role == 'Admin' %}
           <li class="nav-item">
             <a class="nav-link" href="">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Departments</span>
-
-            </a>
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa-solid fa-home"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="menu-title">Rooms</span>
+              <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Lecturers</span>
 
             </a>
           </li>
-
+          {%endif%}
+         
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'core:timetable'%}">
+            <a class="nav-link" href="">
               <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="menu-title">Time Table</span>
 
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'staff:dashboard' %}">
               <i class="fa-solid fa-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

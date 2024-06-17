@@ -111,6 +111,7 @@ def staff(request):
         staff_id = request.POST.get('staff_id')
         role = request.POST.get('role')
         dpt = request.POST.get('department')
+        fname = request.POST.get('fname')
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -123,6 +124,7 @@ def staff(request):
             if password==conf_pass:
                 staff = Staff.objects.get(pk=staff_id)
                 
+                staff.fullname = fname
                 staff.username = username
                 staff.email = email
                 staff.role = role
@@ -134,7 +136,7 @@ def staff(request):
                 messages.error(request, "Passwords do not match")
         else:
             if password==conf_pass:
-                staff = Staff.objects.create(department=department, username=username, email=email,password=password)
+                staff = Staff.objects.create(department=department, fullname=fname, username=username, email=email,password=password)
                 staff.save()
             else:
                 messages.error(request, "Passwords do not match")
@@ -159,6 +161,7 @@ def feedback(request):
 def course(request, program):
     program = get_object_or_404(Program, pk=program)
     courses = Course.objects.filter(program=program)
+    staff = Staff.objects.all()
 
     courses_by_year = {}
     for course in courses:
@@ -174,6 +177,12 @@ def course(request, program):
         c_credits = request.POST.get('c_credits')
         c_desc = request.POST.get('c_desc')
         course_year = request.POST.get('course_year')
+        c_lecturer = request.POST.get('course_lecturer')
+
+        course_lecturer = Staff.objects.get(pk = c_lecturer)
+
+
+
 
         if cId:
             course = Course.objects.get(pk=cId)
@@ -183,16 +192,18 @@ def course(request, program):
             course.credit = c_credits
             course.course_year = course_year
             course.description = c_desc
+            course.course_lecturer = course_lecturer
         
             course.save()
 
         else:
-            course = Course.objects.create(course_name= c_name, course_code = c_code, description= c_desc,  program=program, credit=c_credits, course_year=course_year)
+            course = Course.objects.create(course_name= c_name, course_code = c_code, description= c_desc,  program=program, credit=c_credits, course_year=course_year, course_lecturer=course_lecturer)
             course.save()
         return redirect('core:course', program=program.pk)
 
 
     context = {
+        'staff':staff,
         'program':program,
         'courses':courses,
         'courses_by_year':courses_by_year,

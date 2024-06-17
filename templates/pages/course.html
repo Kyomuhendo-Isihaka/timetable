@@ -15,6 +15,7 @@
                 <tr>
                     <th>Code</th>
                     <th>Course Unit</th>
+                    <th>Lecturer</th>
                     <th>Credits</th>
                     <th>Action</th>
                 </tr>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ c.course_code }}</td>
                     <td>{{ c.course_name }}</td>
+                    <td>{{c.course_lecturer.fullname}}</td>
                     <td>{{ c.credit }}</td>
                     <td>
                         <a href="#" data-toggle="modal" class="btn btn-warning" data-target="#editCourse{{ c.id }}">Edit</a>
@@ -60,10 +62,22 @@
                     <input type="text" placeholder="Course Name" name="c_name" class="form-control my-2" value="{{c.course_name}}" required>
                     <input type="number" placeholder="Credit units" name="c_credits" class="form-control my-2" value="{{c.credit}}" required>
                     <select name="course_year" class="form-control my-2">
-                        <option value="1" {% if c.course_year == 1 %} selected {% endif %}>Year 1</option>
-                        <option value="2" {% if c.course_year == 2 %} selected {% endif %}>Year 2</option>
-                        <option value="3" {% if c.course_year == 3 %} selected {% endif %}>Year 3</option>
-                        <option value="4" {% if c.course_year == 4 %} selected {% endif %}>Year 4</option>
+                        <option value="1 I" {% if c.course_year == '1 I' %} selected {% endif %}>Year 1, Semister One</option>
+                        <option value="1 II" {% if c.course_year == '1 II' %} selected {% endif %}>Year 1, Semister Two</option>
+                        <option value="2 I" {% if c.course_year == '2 I' %} selected {% endif %}>Year 2, Semister One</option>
+                        <option value="2 II" {% if c.course_year == '2 II' %} selected {% endif %}>Year 2, Semister Two</option>
+                        <option value="3 I" {% if c.course_year == '3 I' %} selected {% endif %}>Year 3, Semister One</option>
+                        <option value="3 II" {% if c.course_year == '3 II' %} selected {% endif %}>Year 3, Semister Two</option>
+                        <option value="4 I" {% if c.course_year == '4 I' %} selected {% endif %}>Year 4, Semister One</option>
+                        <option value="4 II" {% if c.course_year == '4 II' %} selected {% endif %}>Year 4, Semister Two</option>
+                        <option value="5 I" {% if c.course_year == '5 I' %} selected {% endif %}>Year 5, Semister One</option>
+                        <option value="5 II" {% if c.course_year == '5 II' %} selected {% endif %}>Year 5, Semister Two</option>
+                    </select>
+                    <select name="course_lecturer" id="" class="form-control my-2" required>
+                        <option value="">None</option>
+                        {% for s in staff %}
+                        <option value="{{s.id}}" {% if c.course_lecturer.id == s.id %} selected {%endif%}>{{s.fullname}}</option>
+                        {%endfor%}
                     </select>
 
                     <textarea name="c_desc" id="" cols="30" rows="5" class="form-control"
@@ -97,11 +111,25 @@
                     <input type="text" placeholder="Course Code" name="c_code" class="form-control my-2" required>
                     <input type="text" placeholder="Course Name" name="c_name" class="form-control my-2" required>
                     <input type="number" placeholder="Credit units" name="c_credits" class="form-control my-2" required>
-                    <select name="course_year" id="" class="form-control my-2">
-                        <option value="1">Year 1</option>
-                        <option value="2">Year 2</option>
-                        <option value="3">Year 3</option>
-                        <option value="4">Year 4</option>
+                    <select name="course_year" id="" class="form-control my-2" required>
+                        <option value="">Choose Year</option>
+                        <option value="1 II">Year 1, Semister One</option>
+                        <option value="1 I">Year 1, Semister Two</option>
+                        <option value="2 I">Year 2, Semister One</option>
+                        <option value="2 II">Year 2, Semister Two</option>
+                        <option value="3 I">Year 3, Semister One</option>
+                        <option value="3 II">Year 3, Semister Two</option>
+                        <option value="4 I">Year 4, Semister One</option>
+                        <option value="4 II">Year 4, Semister One</option>
+                        <option value="5 I">Year 5, Semister Two</option>
+                        <option value="5 II">Year 5, Semister Two</option>
+                    </select>
+
+                    <select name="course_lecturer" id="" class="form-control my-2" required>
+                        <option value="">Choose course Lecturer</option>
+                        {% for s in staff %}
+                        <option value="{{s.id}}">{{s.fullname}}</option>
+                        {%endfor%}
                     </select>
 
                     <textarea name="c_desc" id="" cols="30" rows="5" class="form-control"

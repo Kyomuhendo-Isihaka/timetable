@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from store.models import Staff
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def login_view(request):
@@ -28,4 +29,10 @@ def logout_view(request):
     return redirect('staff:login')
 
 def staff_dashboard(request):
-    return render(request, 'staff/staff_dashboard.html')
+    staff_id = request.session['staff_id']
+    staff = get_object_or_404(Staff, id=staff_id)
+    
+    context = {
+        'staff':staff,
+    }
+    return render(request, 'staff/staff_dashboard.html', context)

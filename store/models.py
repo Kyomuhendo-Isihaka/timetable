@@ -17,30 +17,41 @@ class Program(models.Model):
 
     def __str__(self):
         return self.program_name
+
+class Staff(models.Model):
+    ROLE = [('Admin','Admin'),('Lecturer','Lecturer')]
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    email = models.EmailField()
+    password = models.CharField(max_length=255)
+    role = models.CharField(max_length=50, choices=ROLE, default='lecturer')
+
+    def delete(self, *args, **kwargs):
+        courses = Course.objects.filter(course_lecturer=self)
+        for course in courses:
+            course.course_lecturer = None
+            course.save()
+        super().delete(*args, **kwargs)
+    
+
+    def __str__(self):
+        return self.username
     
 class Course(models.Model):
+    course_lecturer = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
     course_name = models.CharField(max_length=100)
     course_code = models.CharField(max_length=20)
     description = models.TextField()
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     credit = models.PositiveIntegerField()
-    course_year = models.PositiveIntegerField()
+    course_year = models.CharField(max_length=40)
   
     def __str__(self):
         return self.course_name
     
 
-class Staff(models.Model):
-    ROLE = [('Admin','Admin'),('Lecturer','Lecturer')]
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    username = models.CharField(max_length=255)
-    email = models.EmailField()
-    password = models.CharField(max_length=255)
-    role = models.CharField(max_length=50, choices=ROLE, default='lecturer')
-    
 
-    def __str__(self):
-        return self.username
     
 
 class Student(models.Model):
