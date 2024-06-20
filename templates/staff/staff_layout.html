@@ -49,8 +49,7 @@
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-              data-toggle="dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="modal" data-target="#settings">
               <i class="ti-settings mx-0"></i>
               <!-- <span class="count"></span> -->
             </a>
@@ -173,6 +172,33 @@
       </div>
     </div>
     <!-- page-body-wrapper ends -->
+
+    <!-- settings modal -->
+    <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Settings</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                      <input type="email" placeholder="Email" name="email" class="form-control my-2" required>
+                      <input type="password" placeholder="Password" name="password" class="form-control my-2" required>
+                      <input type="passwordConfirm" placeholder="Confirm Password" name="passwordConfirm" class="form-control my-2" required>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" onclick="performAction()">Save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
   </div>
   <!-- container-scroller -->
 

@@ -1,0 +1,139 @@
+{% extends 'students/student_layout.html'%}
+
+{% block content %}
+Rooms
+<br />
+
+<!-- add room -->
+  <div class="card">
+    <div class="card-body">
+
+      <div class="table-responsive pt-3">
+        <table class="table table-secondary table-striped">
+          <thead>
+            <tr>
+              <th>
+                Room Name
+              </th>
+              <th>
+                Room Capacity
+              </th>
+              <th>
+                Location
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Educ Comp Lab
+              </td>
+              <td>
+                55 Seats
+              </td>
+              <td>
+                Faculty of Education 3rd floor
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Add room -->
+<div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Add Room</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <form class="forms-sample" method="POST">
+            {% csrf_token %}
+
+
+            <div class="form-group">
+              <label for="exampleInputUsername1">Room Name</label>
+              <input name="room_name" required type="text" class="form-control" id="exampleInputUsername1"
+                placeholder="Room name" />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Room Capacity</label>
+              <input type="text" name="room_cap" required class="form-control" id="exampleInputEmail1"
+                placeholder="Room Capacity" />
+            </div>
+            <div class="form-group">
+              <label for="location">Room Location</label>
+              <input type="text" name="room_location" required class="form-control" id="location"
+                placeholder="Location" />
+            </div>
+            <button type="submit" class="btn btn-primary mr-2" onclick="performAction()">
+              Add Room
+            </button>
+            <button type="reset" data-dismiss="modal" class="btn btn-light">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for r in rooms %}
+<!-- edit room -->
+<div class="modal fade" id="editRoom{{r.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Edit Room</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <form class="forms-sample" method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="room_id" value="{{r.id}}" id="">
+            <div class="form-group">
+              <label for="exampleInputUsername1">Room Name</label>
+              <input name="room_name" value="{{r.room_name}}" required type="text" class="form-control"
+                id="exampleInputUsername1" placeholder="Room Name" />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Room Capacity</label>
+              <input type="text" value="{{r.capacity}}" name="room_cap" required class="form-control"
+                id="exampleInputEmail1" placeholder="Room Capacity" />
+            </div>
+            <div class="form-group">
+              <label for="location">Room Location</label>
+              <input type="text" value="{{r.location}}" name="room_location" required class="form-control" id="location"
+                placeholder="Location" />
+            </div>
+            <button type="submit" class="btn btn-primary mr-2" onclick="performAction()">
+              Edit Room
+            </button>
+            <button type="reset" data-dismiss="modal" class="btn btn-light">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%}
+{%endblock%}
