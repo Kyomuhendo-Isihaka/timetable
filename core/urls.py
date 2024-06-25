@@ -34,5 +34,5 @@ urlpatterns = [
     path('scheduletimetable/', views.scheduletimetable, name='scheduletimetable'),
 
 
-    
+    path('settings/', views.settings, name='settings'),
 ]

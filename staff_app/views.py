@@ -36,3 +36,6 @@ def staff_dashboard(request):
         'staff':staff,
     }
     return render(request, 'staff/staff_dashboard.html', context)
+
+def settings(request):
+    return render(request, 'staff/settings.html')

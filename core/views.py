@@ -309,3 +309,6 @@ def timetable(request):
 
 def scheduletimetable(request):
     return render(request, 'pages/scheduletimetable.html')
+
+def settings(request):
+    return render(request, 'core/settings.html')    
