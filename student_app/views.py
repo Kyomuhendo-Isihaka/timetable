@@ -36,3 +36,6 @@ def student_lecturers(request):
 
 def student_rooms(request):
     return render(request, 'students/student_rooms.html')
+
+def settings(request):
+    return render(request, 'students/settings.html')    
