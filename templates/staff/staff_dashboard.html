@@ -1,4 +1,90 @@
 {% extends 'staff/staff_layout.html'%}
 {%block content%}
 <h1 class="text-center">Staff Dashboard {{staff.id}}</h1>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Welcome Back!</h3>
+                    <h6 class="font-weight-normal mb-0">Thank you for using our timetable generator system!</h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <div class="card" style="max-width: 300px; border-radius: 8px;">
+                        <div class="d-flex card-body"><h3 class="text-center text-bolder">Today</h3>
+                            <div class="text-center text-bolder ml-5 my-2" id="current-date"></div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 grid-margin transparent">
+            <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                        <div class="card-body">
+                            <!-- Displayed based on the courses assiggned to that particular lecturer signed in -->
+                            <p class="mb-4">Academic Year</p>
+                            <p class="fs-30 mb-2">2024/2025</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card bg-danger">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Curent Semester</p>
+                            <p class="fs-30 mb-2">Semester 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card card-primary bg-success">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Total Courses Assigned this Semester</p>
+                            <p class="fs-30 mb-2">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                    <div class="card bg-warning">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Total Classess this Sem</p>
+                            <p class="fs-30 mb-2">30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin transparent">
+            <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card bg-dark">
+                        <div class="card-body text-white">
+                            <p class="mb-4">Total Classes this Week</p>
+                            <p class="fs-30 mb-2">3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                        <div class="card-body">
+                            <p class="mb-4">Total Classes Today</p>
+                            <p class="fs-30 mb-2">2</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}
