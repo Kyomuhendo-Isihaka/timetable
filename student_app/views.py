@@ -27,3 +27,15 @@ def logout_view(request):
 
 def student_dashboard(request):
     return render(request, 'students/student_dashboard.html')
+
+def student_departments(request):
+    return render(request, 'students/student_departments.html')
+
+def student_lecturers(request):
+    return render(request, 'students/student_lecturers.html')
+
+def student_rooms(request):
+    return render(request, 'students/student_rooms.html')
+
+def settings(request):
+    return render(request, 'students/settings.html')    

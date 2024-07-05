@@ -22,7 +22,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- endinject -->
@@ -49,8 +49,7 @@
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-              data-toggle="dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="{% url 'staff:settings'%}">
               <i class="ti-settings mx-0"></i>
               <!-- <span class="count"></span> -->
             </a>
@@ -125,7 +124,7 @@
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="menu-title">Lecturers</span>
+              <span class="menu-title">Courses</span>
 
             </a>
           </li>
@@ -173,6 +172,33 @@
       </div>
     </div>
     <!-- page-body-wrapper ends -->
+
+    <!-- settings modal -->
+    <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Settings</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                      <input type="email" placeholder="Email" name="email" class="form-control my-2" required>
+                      <input type="password" placeholder="Password" name="password" class="form-control my-2" required>
+                      <input type="passwordConfirm" placeholder="Confirm Password" name="passwordConfirm" class="form-control my-2" required>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" onclick="performAction()">Save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
   </div>
   <!-- container-scroller -->
 
@@ -197,6 +223,8 @@
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/currentdate.js' %}"></script>
+
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
