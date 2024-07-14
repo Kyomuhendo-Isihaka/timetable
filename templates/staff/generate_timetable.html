@@ -1,0 +1,71 @@
+<!-- templates/generate_timetable.html -->
+{% extends 'staff/staff_layout.html'%}
+
+{% block content %}
+  <h1>Generate Timetable</h1>
+  <!-- <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generate Timetable</button>
+  </form> -->
+  <!-- generate_timetable.html -->
+
+<!-- <form method="post">
+  {% csrf_token %}
+  <label for="program_id">Program:</label>
+  <select name="program_id" id="program_id">
+      <option value="">Select a Program</option>
+      {% for program in programs %}
+          <option value="{{ program.id }}">{{ program.program_name }}</option>
+      {% endfor %}
+  </select><br><br>
+  
+  <label for="year">Year:</label>
+  <input type="number" name="year" id="year"><br><br>
+
+  <button type="submit">Generate Timetable</button>
+</form> -->
+
+<!-- generate_timetable.html -->
+
+<h2>Generate Timetable</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="program_id">Program:</label>
+    <select name="program_id" id="program_id">
+        <option value="">Select a Program</option>
+        {% for program in programs %}
+            <option value="{{ program.id }}">{{ program.program_name }}</option>
+        {% endfor %}
+    </select><br><br>
+    
+    <label for="year">Year:</label>
+    <input type="number" name="year" id="year"><br><br>
+
+    <button type="submit">Generate Timetable</button>
+</form>
+
+{% if timetable %}
+    <h3>Timetable for {{ timetable.program.program_name }} Year {{ timetable.year }}</h3>
+    <table border="1">
+        <tr>
+            <th>Day</th>
+            <th>Timeslot</th>
+            <th>Course</th>
+            <th>Lecturer</th>
+            <th>Room</th>
+        </tr>
+        {% for schedule in timetable.courseschedule_set.all %}
+        <tr>
+            <td>{{ schedule.timeslot.day }}</td>
+            <td>{{ schedule.timeslot.time_range }}</td>
+            <td>{{ schedule.course.course_name }}</td>
+            <td>{{ schedule.staff.fullname }}</td>
+            <td>{{ schedule.room.room_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+
+{% endblock %}

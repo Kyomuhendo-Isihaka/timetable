@@ -9,3 +9,14 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.lecture-info {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.science { color: #007bff; }
+        .arts { color: #28a745; }
+        .engineering { color: #ffc107; }
+        .law { color: #dc3545; }
+        .social-sciences { color: #17a2b8; }
