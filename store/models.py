@@ -98,41 +98,11 @@ class TimeSlot(models.Model):
     
 class Timetable(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
-    year = models.PositiveIntegerField()
-
+    year = models.CharField(max_length=10)
+    
     def __str__(self):
         return f"Timetable for {self.program.program_name} Year {self.year}"
     
-# class CourseSchedule(models.Model):
-#     timetable = models.ForeignKey(Timetable, on_delete=models.CASCADE)
-#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-#     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-#     timeslot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
-#     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f"{self.course.course_name} in {self.room.room_name} at {self.timeslot}"
-
-#     def save(self, *args, **kwargs):
-#         self.validate_schedule()
-#         super().save(*args, **kwargs)
-
-#     def validate_schedule(self):
-#         # Check for room conflicts
-#         room_conflicts = CourseSchedule.objects.filter(
-#             room=self.room,
-#             timeslot=self.timeslot
-#         ).exclude(id=self.id)
-#         if room_conflicts.exists():
-#             raise ValidationError(f"Room {self.room.room_name} is already booked for {self.timeslot}.")
-
-#         # Check for staff conflicts
-#         staff_conflicts = CourseSchedule.objects.filter(
-#             staff=self.staff,
-#             timeslot=self.timeslot
-#         ).exclude(id=self.id)
-#         if staff_conflicts.exists():
-#             raise ValidationError(f"Staff {self.staff.username} is already scheduled for another course at {self.timeslot}.")
 
 class CourseSchedule(models.Model):
     timetable = models.ForeignKey(Timetable, on_delete=models.CASCADE)

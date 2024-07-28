@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from store.models import Student
 from django.contrib import messages
 from django.contrib.auth import logout
-# Create your views here.
+
 def login_view(request):
     if request.method == "POST":
         reg_no = request.POST.get('reg_no')
@@ -11,10 +11,8 @@ def login_view(request):
         try:
             student = Student.objects.get(reg_no=reg_no)
             if student.password == password:
-               
                 request.session['student_id'] = student.id
-                
-                return redirect('student:dashboard')  
+                return redirect('student:dashboard')
             else:
                 messages.error(request, 'Invalid password.')
         except Student.DoesNotExist:
@@ -23,19 +21,35 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, 'Logged out successfully.')
     return redirect('student:login')
 
 def student_dashboard(request):
+    if 'student_id' not in request.session:
+        messages.error(request, 'You need to be logged in to view this page.')
+        return redirect('student:login')
     return render(request, 'students/student_dashboard.html')
 
 def student_departments(request):
+    if 'student_id' not in request.session:
+        messages.error(request, 'You need to be logged in to view this page.')
+        return redirect('student:login')
     return render(request, 'students/student_departments.html')
 
 def student_lecturers(request):
+    if 'student_id' not in request.session:
+        messages.error(request, 'You need to be logged in to view this page.')
+        return redirect('student:login')
     return render(request, 'students/student_lecturers.html')
 
 def student_rooms(request):
+    if 'student_id' not in request.session:
+        messages.error(request, 'You need to be logged in to view this page.')
+        return redirect('student:login')
     return render(request, 'students/student_rooms.html')
 
 def settings(request):
-    return render(request, 'students/settings.html')    
+    if 'student_id' not in request.session:
+        messages.error(request, 'You need to be logged in to view this page.')
+        return redirect('student:login')
+    return render(request, 'students/settings.html')

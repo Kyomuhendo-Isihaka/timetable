@@ -65,9 +65,16 @@
               <h4>Hello! Welcome Back</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
 
+
+              {% if messages %}
+              {% for message in messages %}
+              <h6{% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</h6>
+              {% endfor %}
+              {% endif %}
+
               <form class="pt-3" method="post">
                 {% csrf_token %}
-                <p class="text-center text-danger">{{login_err}}</p>
+                
                 <div class="form-group">
                   <input type="text" required name="username" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
                 </div>

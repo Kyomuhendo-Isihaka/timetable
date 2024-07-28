@@ -49,11 +49,12 @@
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="{% url 'staff:settings'%}">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown"
+              href="{% url 'staff:settings'%}">
               <i class="ti-settings mx-0"></i>
               <!-- <span class="count"></span> -->
             </a>
-            
+
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
               aria-labelledby="notificationDropdown">
               <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
@@ -137,9 +138,9 @@
             </a>
           </li>
 
-          
-          {%endif%}
-         
+
+          {% endif %}
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'staff:timetable_view' %}">
               <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -148,7 +149,7 @@
             </a>
           </li>
 
-          
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'staff:logout' %}">
               <i class="icon-lock menu-icon"></i>
@@ -171,28 +172,29 @@
 
     <!-- settings modal -->
     <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Update Settings</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <form action="" method="POST">
-                  {% csrf_token %}
-                  <div class="modal-body">
-                      <input type="email" placeholder="Email" name="email" class="form-control my-2" required>
-                      <input type="password" placeholder="Password" name="password" class="form-control my-2" required>
-                      <input type="passwordConfirm" placeholder="Confirm Password" name="passwordConfirm" class="form-control my-2" required>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary" onclick="performAction()">Save</button>
-                  </div>
-              </form>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Settings</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+              <input type="email" placeholder="Email" name="email" class="form-control my-2" required>
+              <input type="password" placeholder="Password" name="password" class="form-control my-2" required>
+              <input type="passwordConfirm" placeholder="Confirm Password" name="passwordConfirm"
+                class="form-control my-2" required>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" onclick="performAction()">Save</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
