@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from store.models import Staff, Timetable, CourseSchedule, Program
+from store.models import Staff, Timetable, CourseSchedule, Program, Department, Course
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.core.management import call_command
@@ -125,3 +125,50 @@ def settings(request):
         'staff': staff
     }
     return render(request, 'staff/settings.html', context)
+
+
+def programs(request):
+    staff_id = request.session.get('staff_id')
+    # department = get_object_or_404(Department)
+    programs = Program.objects.all().order_by('program_name')
+    if not staff_id:
+        messages.error(request, 'Please log in to access the programs.')
+        return redirect('staff:login')
+
+    staff = get_object_or_404(Staff, id=staff_id)
+    context = {
+        'staff': staff,
+        'programs':programs
+    }
+    return render(request, 'staff/programs.html', context)
+
+def courses(request, program):
+    staff_id = request.session.get('staff_id')
+
+    if not staff_id:
+        messages.error(request, 'Please log in to access the programs.')
+        return redirect('staff:login')
+
+    staff = get_object_or_404(Staff, id=staff_id)
+    
+    program = get_object_or_404(Program, pk=program)
+    courses = Course.objects.filter(program=program)
+    staffs = Staff.objects.all()
+    
+    courses_by_year = {}
+    for course in courses:
+        year = course.course_year
+        if year not in courses_by_year:
+            courses_by_year[year] = []
+        courses_by_year[year].append(course)
+    
+    context = {
+        'staff': staff,
+        'staffs': staffs,
+        'program':program,
+        'courses':courses,
+        'courses_by_year': courses_by_year
+    }
+    
+    
+    return render(request, 'staff/courses.html', context)

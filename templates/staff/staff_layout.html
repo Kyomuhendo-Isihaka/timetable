@@ -110,7 +110,7 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <div id="notification" class="notification">Action was successful!</div>
+      <!-- <div id="notification" class="notification">Action was successful!</div> -->
 
 
       <!-- partial:partials/_sidebar.html -->
@@ -124,7 +124,7 @@
           </li>
           {% if staff.role == 'Admin' %}
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{% url 'staff:programs' %}">
               <i class="fa-solid fa-clock"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="menu-title">Programs</span>
 

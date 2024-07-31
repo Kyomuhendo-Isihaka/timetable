@@ -1,0 +1,32 @@
+{% extends 'staff/staff_layout.html'%}
+{%block content%}
+<h6 class="text-center">Programs</h6>
+<div class="content-wrapper">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Program Code</th>
+                        <!-- <th class="text-center">Actions</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in programs %}
+                    {% if staff.department == p.department %}
+                    
+                    <tr>
+                        <td><a href="{% url 'staff:course' program=p.pk %}" class="nav-link">{{ p.program_name }}</a></td>
+                        <td>{{ p.program_code }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{%endblock%}

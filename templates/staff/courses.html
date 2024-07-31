@@ -1,0 +1,40 @@
+{% extends 'staff/staff_layout.html'%}
+
+{% block content %}
+<div class="container">
+    <h3 class="text-center">{{ program.program_name }} ({{ program.program_code }})</h3>
+    <p>Course Units</p>
+    
+    </div>
+    {% for year, courses_in_year in courses_by_year.items %}
+    <div class="card p-3 my-3 bg-white">
+        <h5>Year {{ year }}</h5>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Course Unit</th>
+                    <th>Lecturer</th>
+                    <th>Credits</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in courses %}
+                {% if c.course_year == year %}
+                <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ c.course_name }}</td>
+                    <td>{{c.course_lecturer.fullname}}</td>
+                    <td>{{ c.credit }}</td>
+                   
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+</div>
+
+{%endblock%}

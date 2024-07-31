@@ -18,7 +18,7 @@ Departments
         <tbody>
             {% for d in departments %}
             <tr>
-                <td><a href="{% url 'core:program' dpt=d.pk %}">{{ d.department_name }}</a></td>
+                <td><a class="nav-link" href="{% url 'core:program' dpt=d.pk %}">{{ d.department_name }}</a></td>
                 <td>{{ d.department_code }}</td>
                 <td>
                     <a href="#" data-toggle="modal" data-target="#editDepartment{{ d.id }}" class="btn btn-warning">Edit</a>

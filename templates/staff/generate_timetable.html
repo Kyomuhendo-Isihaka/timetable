@@ -3,13 +3,16 @@
 {% block content %}
   
 <h2>Generate Timetable</h2>
+
 <form method="post">
     {% csrf_token %}
     <label for="program_id">Program:</label>
     <select name="program_id" class="form-control my-2" id="program_id" required>
         <option value="">Select a Program</option>
         {% for program in programs %}
+        {% if staff.department == program.department %}
             <option value="{{ program.id }}">{{ program.program_name }}</option>
+        {% endif %}
         {% endfor %}
     </select><br><br>
     

@@ -8,6 +8,7 @@
      
     {% if timetables %}
     {% for timetable in timetables %}
+        {% if timetable.program.department == staff.department %}
         <h3 class="mt-5">Timetable for {{ timetable.program.program_name }} Year {{ timetable.year }}</h3>
         <table class="table table-bordered table-striped">
             <thead class="bg-primary text-white">
@@ -31,7 +32,10 @@
                 {% endfor %}
             </tbody>
         </table>
-    {% endfor %}
+        {% else %}
+        <p>No timetables available.</p>
+        {% endif %}
+        {% endfor %}
 
 
     

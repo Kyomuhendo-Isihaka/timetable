@@ -24,7 +24,7 @@
                         {% for p in programs %}
                         {% if p.department.pk == department.pk %}
                         <tr>
-                            <td><a href="{% url 'core:course' program=p.pk %}">{{ p.program_name }}</a></td>
+                            <td><a class="nav-link" href="{% url 'core:course' program=p.pk %}">{{ p.program_name }}</a></td>
                             <td>{{ p.program_code }}</td>
                             <td class="text-center">
                                 <a href="#" data-toggle="modal" data-target="#editProgram{{ p.id }}" class="btn btn-warning" >Edit</a>
