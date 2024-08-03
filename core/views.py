@@ -34,7 +34,7 @@ def login_view(request):
 
 def dashboard(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     num_dpt = Department.objects.all().count()
@@ -56,7 +56,7 @@ def dashboard(request):
 
 def students(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+      
         return redirect('core:login')
 
     programs = Program.objects.all()
@@ -159,24 +159,24 @@ def staff(request):
 
 def delete_staff(request, staff_id):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+       
         return redirect('core:login')
 
     staff = get_object_or_404(Staff, pk=staff_id)
     staff.delete()
-    messages.success(request, 'Staff deleted successfully.')
+    
     return redirect('core:staff')
 
 def feedback(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     return render(request, 'core/feedback.html')
 
 def course(request, program):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     program = get_object_or_404(Program, pk=program)
@@ -210,11 +210,11 @@ def course(request, program):
             course.description = c_desc
             course.course_lecturer = course_lecturer
             course.save()
-            messages.success(request, 'Course updated successfully.')
+            
         else:
             course = Course.objects.create(course_name=c_name, course_code=c_code, description=c_desc, program=program, credit=c_credits, course_year=course_year, course_lecturer=course_lecturer)
             course.save()
-            messages.success(request, 'Course created successfully.')
+            
 
         return redirect('core:course', program=program.pk)
 
@@ -238,7 +238,7 @@ def deleteCourse(request, pk):
 
 def program(request, dpt):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     department = get_object_or_404(Department, pk=dpt)
@@ -254,11 +254,11 @@ def program(request, dpt):
             program.program_code = progcode
             program.program_name = progname
             program.save()
-            messages.success(request, 'Program updated successfully.')
+            
         else:
             program = Program.objects.create(program_code=progcode, program_name=progname, department=department)
             program.save()
-            messages.success(request, 'Program created successfully.')
+           
 
     context = {
         'department': department,
@@ -268,38 +268,37 @@ def program(request, dpt):
 
 def deleteProgram(request, pk):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     program = get_object_or_404(Program, pk=pk)
     program.delete()
-    messages.success(request, 'Program deleted successfully.')
-    return redirect('core:department', department=program.department.id)
+    
+    return redirect('core:program', dpt=program.department.id)
 
 def departments(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     departments = Department.objects.all()
 
     if request.method == "POST":
-        dpt_id = request.POST.get('dptId')
-        dpt_code = request.POST.get('dptCode')
-        dpt_name = request.POST.get('dptName')
-        dpt_email = request.POST.get('dptEmail')
+        dpt_id = request.POST.get('dtId')
+        dpt_code = request.POST.get('dptcode')
+        dpt_name = request.POST.get('dptname')
+        
 
         if dpt_id:
             department = Department.objects.get(pk=dpt_id)
-            department.dpt_code = dpt_code
-            department.dpt_name = dpt_name
-            department.dpt_email = dpt_email
+            department.department_code = dpt_code
+            department.department_name = dpt_name
             department.save()
-            messages.success(request, 'Department updated successfully.')
+            
         else:
-            department = Department.objects.create(dpt_code=dpt_code, dpt_name=dpt_name, dpt_email=dpt_email)
+            department = Department.objects.create(department_code=dpt_code, department_name=dpt_name)
             department.save()
-            messages.success(request, 'Department created successfully.')
+            
 
     context = {
         'departments': departments,
@@ -308,17 +307,17 @@ def departments(request):
 
 def deleteDept(request, pk):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+       
         return redirect('core:login')
 
     department = get_object_or_404(Department, pk=pk)
     department.delete()
-    messages.success(request, 'Department deleted successfully.')
+    
     return redirect('core:departments')
 
 def rooms(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     rooms = Room.objects.all()
@@ -335,11 +334,11 @@ def rooms(request):
             room.capacity = room_cap
             room.location = room_location
             room.save()
-            messages.success(request, 'Room updated successfully.')
+            
         else:
             room = Room.objects.create(room_name=room_name, capacity=room_cap, location=room_location)
             room.save()
-            messages.success(request, 'Room created successfully.')
+            
 
     context = {
         'rooms': rooms,
@@ -348,31 +347,31 @@ def rooms(request):
 
 def deleteRoom(request, pk):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+       
         return redirect('core:login')
 
     room = get_object_or_404(Room, pk=pk)
     room.delete()
-    messages.success(request, 'Room deleted successfully.')
+    
     return redirect('core:room')
 
 def timetable(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     return render(request, 'core/timetable.html')
 
 def scheduletimetable(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     return render(request, 'pages/scheduletimetable.html')
 
 def settings(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'You need to be logged in to view this page.')
+        
         return redirect('core:login')
 
     return render(request, 'core/settings.html')
